@@ -1,0 +1,27 @@
+name: Express CI
+
+on:
+  push:
+    branches:
+      - master  # 触发分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run Express app
+      env:
+        APP_ID: ${{ secrets.APP_ID }}  # 从 Secrets 中获取敏感配置
+      run: npm run start  # 根据你的启动命令调整这里，比如 npm start 或 node app.js

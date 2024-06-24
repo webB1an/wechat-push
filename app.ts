@@ -1,14 +1,32 @@
 import express from 'express'
-import * as http from 'http'
+import http from 'http'
 import cors from 'cors'
+import dotenv from 'dotenv'
 
-const app: express.Application = express()
-const server: http.Server = http.createServer(app)
+import type { Express } from 'express'
+import type { Server } from 'http'
+
+import { job } from './cron'
+
+dotenv.config()
+
 const port = 3000
 
-app.use(express.json())
+const app:Express = express()
+const server: Server = http.createServer(app)
+
+console.log('====================================================================')
+
 app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+job.start()
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
 server.listen(port, () => {
-  console.log('---------------server is runnung at port: ---------------', port)
+  console.log(`Express server is listening at ${port}`)
 })
