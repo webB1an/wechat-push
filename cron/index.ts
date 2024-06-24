@@ -5,6 +5,9 @@ export const job = new CronJob(
   function() {
     console.log('执行了')
     console.log(process.env.APP_ID)
+    if (process.env.APP_ID) {
+      console.log('hahaha')
+    }
   }, // onTick
   null, // onComplete
   false, // start
