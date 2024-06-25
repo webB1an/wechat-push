@@ -28,6 +28,7 @@ jobs:
 
     - name: Create .env file
       run: |
+        touch .env
         echo "APP_ID=${{ secrets.APP_ID }}" >> .env
         echo "APP_SECRET=${{ secrets.APP_SECRET }}" >> .env
         echo "CARD_DATE=${{ secrets.CARD_DATE }}" >> .env
