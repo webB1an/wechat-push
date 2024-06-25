@@ -39,7 +39,7 @@ jobs:
       #   TEMPLATE_ID_JUNE: ${{ secrets.TEMPLATE_ID_JUNE }}
       #   TEMPLATE_ID_PENTA: ${{ secrets.TEMPLATE_ID_PENTA }}
       env:
-        APP_ID: ${{ secrets.APP_ID }}  # 从 Secrets 中获取敏感配置
+        APP_ID: ${{ vars.APP_ID }}  # 从 Secrets 中获取敏感配置
         APP_SECRET: ${{ secrets.APP_SECRET }}
         CARD_DATE: ${{ secrets.CARD_DATE }}
         CHILD_DATE: ${{ secrets.CHILD_DATE }}
