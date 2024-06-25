@@ -21,7 +21,21 @@ jobs:
     - name: Install dependencies
       run: npm install
 
+    - name: Print APP_ID
+      run: echo "APP_ID is $APP_ID"
+      env:
+        APP_ID: ${{ secrets.APP_ID }}
+
     - name: Run Express app
       env:
         APP_ID: ${{ secrets.APP_ID }}  # 从 Secrets 中获取敏感配置
+        APP_SECRET: ${{ secrets.APP_SECRET }}
+        CARD_DATE: ${{ secrets.CARD_DATE }}
+        CHILD_DATE: ${{ secrets.CHILD_DATE }}
+        JUNE_ID: ${{ secrets.JUNE_ID }}
+        MARRY_DATE: ${{ secrets.MARRY_DATE }}
+        MEET_DATE: ${{ secrets.MEET_DATE }}
+        PENTA_ID: ${{ secrets.PENTA_ID }}
+        TEMPLATE_ID_JUNE: ${{ secrets.TEMPLATE_ID_JUNE }}
+        TEMPLATE_ID_PENTA: ${{ secrets.TEMPLATE_ID_PENTA }}
       run: npm run start  # 根据你的启动命令调整这里，比如 npm start 或 node app.js
