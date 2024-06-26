@@ -48,7 +48,7 @@ name: Express CI
 
 on:
   schedule:
-    - cron: '30 7 * * *'  # 每天早上 7 点执行，UTC 时间
+    - cron: '0 1 * * *'  # 每天早上 7 点执行，UTC 时间
 
 jobs:
   build:
