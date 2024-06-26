@@ -1,9 +1,8 @@
 name: Express CI
 
 on:
-  push:
-    branches:
-      - master  # 触发分支
+  schedule:
+    - cron: '*/2 * * * *'  # 每天早上 7 点执行，UTC 时间
 
 jobs:
   build:
