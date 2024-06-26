@@ -1,8 +1,54 @@
+# name: Express CI
+
+# on:
+#   push:
+#     branches:
+#       - master  # 触发分支
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+
+#     - name: Set up Node.js
+#       uses: actions/setup-node@v2
+#       with:
+#         node-version: '18'
+
+#     - name: Install dependencies
+#       run: npm install
+
+#     - name: Print APP_ID
+#       run: echo "APP_ID is $APP_ID"
+#       env:
+#         APP_ID: ${{ secrets.APP_ID }}
+
+#     - name: Create .env file
+#       run: |
+#         touch .env
+#         echo "APP_ID=${{ secrets.APP_ID }}" >> .env
+#         echo "APP_SECRET=${{ secrets.APP_SECRET }}" >> .env
+#         echo "CARD_DATE=${{ secrets.CARD_DATE }}" >> .env
+#         echo "CHILD_DATE=${{ secrets.CHILD_DATE }}" >> .env
+#         echo "JUNE_ID=${{ secrets.JUNE_ID }}" >> .env
+#         echo "MARRY_DATE=${{ secrets.MARRY_DATE }}" >> .env
+#         echo "MEET_DATE=${{ secrets.MEET_DATE }}" >> .env
+#         echo "PENTA_ID=${{ secrets.PENTA_ID }}" >> .env
+#         echo "TEMPLATE_ID_JUNE=${{ secrets.TEMPLATE_ID_JUNE }}" >> .env
+#         echo "TEMPLATE_ID_PENTA=${{ secrets.TEMPLATE_ID_PENTA }}" >> .env
+    
+#     - name: Run Express app
+#       run: npm run start  # 根据你的启动命令调整这里，比如 npm start 或 node app.js
+
+
 name: Express CI
 
 on:
   schedule:
-    - cron: '*/2 * * * *'  # 每天早上 7 点执行，UTC 时间
+    - cron: '30 7 * * *'  # 每天早上 7 点执行，UTC 时间
 
 jobs:
   build:
