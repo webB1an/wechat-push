@@ -16,8 +16,6 @@ const app:Express = express()
 const server: Server = http.createServer(app)
 
 console.log('====================================================================')
-const a = process.env.APP_ID
-console.log('process.env.APP_ID', JSON.stringify(a))
 
 app.use(cors())
 app.use(express.json())

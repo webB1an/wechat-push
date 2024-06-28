@@ -2,7 +2,19 @@ import { getAccessToken } from './getAccessToken'
 import axios from 'axios'
 import dayjs from 'dayjs'
 
+import { calculateAge, getHitokoto } from './utils'
+
 export async function wechat() {
+  const now = dayjs()
+  const meetDate = dayjs(process.env.MEET_DATE)
+  const cardDate = dayjs(process.env.CARD_DATE)
+  const marryDate = dayjs(process.env.MARRY_DATE)
+  const childDate = dayjs(process.env.CHILD_DATE)
+
+  const hitokoto = await getHitokoto()
+  const sentence = hitokoto || '一叶见秋起，半天卷云舒。'
+  console.log('sentence', sentence)
+
   const token = await getAccessToken()
   const URL = `https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=${token}`
   const configs = [
@@ -15,12 +27,6 @@ export async function wechat() {
       templatdId: process.env.TEMPLATE_ID_JUNE
     }
   ]
-
-  const now = dayjs()
-  const meetDate = dayjs(process.env.MEET_DATE)
-  const cardDate = dayjs(process.env.CARD_DATE)
-  const marryDate = dayjs(process.env.MARRY_DATE)
-  const childDate = dayjs(process.env.CHILD_DATE)
 
   const meet = now.diff(meetDate, 'day') // 相识
   const card = now.diff(cardDate, 'day') // 领证
@@ -69,39 +75,35 @@ export async function wechat() {
       url: '',
       data: {
         meet: {
-          value: meet,
-          color: '#173177'
+          value: meet
         },
         card: {
-          value: card,
-          color: '#173177'
+          value: card
         },
         marry: {
-          value: marry,
-          color: '#173177'
+          value: marry
         },
         child: {
-          value: child,
-          color: '#173177'
+          // value: child
+          value: calculateAge(childDate)
         },
         meetInterval: {
-          value: meetInterval,
-          color: '#173177'
+          value: meetInterval
         },
         cardInterval: {
-          value: cardInterval,
-          color: '#173177'
+          value: cardInterval
         },
         marryInterval: {
-          value: marryInterval,
-          color: '#173177'
+          value: marryInterval
         },
         childInterval: {
-          value: childInterval,
-          color: '#173177'
+          value: childInterval
+        },
+        sentence: {
+          value: sentence
         }
       }
     })
-    console.log('推送结果：', response)
+    console.log('推送结果：', response.data.errmsg)
   }
 }
