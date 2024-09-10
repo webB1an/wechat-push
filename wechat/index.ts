@@ -105,5 +105,6 @@ export async function wechat() {
       }
     })
     console.log('推送结果：', response.data.errmsg)
+    console.log('时间：', new Date())
   }
 }
