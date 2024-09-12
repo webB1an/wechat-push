@@ -44,7 +44,7 @@
 #       run: npm run start  # 根据你的启动命令调整这里，比如 npm start 或 node app.js
 
 
-name: Express CI
+name: Run Wechat-Push
 
 on:
   schedule:
